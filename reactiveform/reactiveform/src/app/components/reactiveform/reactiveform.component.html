@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="myForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input [formControlName]="username" id="username" type="text" class="form-control">
+            <br>
+            <div class="alert alert-danger">
+              The username is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                [formControlName]="password"
+                id="password"
+                type="text"
+                class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
