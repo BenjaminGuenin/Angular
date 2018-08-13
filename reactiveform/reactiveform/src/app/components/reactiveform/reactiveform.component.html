@@ -5,21 +5,27 @@
       <form [formGroup]="myForm">
         <div class="form-group">
             <label for="username">Username</label>
-            <input [formControlName]="username" id="username" type="text" class="form-control">
+            <input formControlName="username" id="username" type="text" class="form-control">
             <br>
-            <div class="alert alert-danger">
+            <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
               The username is required.
             </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input
-                [formControlName]="password"
+                formControlName="password"
                 id="password"
                 type="text"
                 class="form-control">
+                <br>
+                <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+                  The password is required.
+                </div>
         </div>
-        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <button
+        [disabled]="myForm"
+         class="btn btn-primary" type="submit">Sign Up</button>
       </form>
     </div>
   </div>

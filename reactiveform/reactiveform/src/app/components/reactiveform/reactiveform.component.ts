@@ -1,5 +1,6 @@
+import { UsernameValidators } from './../../common/validators/username.validator';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-reactiveform',
@@ -14,9 +15,14 @@ export class ReactiveformComponent implements OnInit {
     this.createForm();
   }
 
+
+  // getters
+  get username() { return this.myForm.get('username'); }
+  get password() { return this.myForm.get('password'); }
+
   createForm() {
     this.myForm = new FormGroup({
-      username: new FormControl('', Validators.required),
+      username: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidators.cannotContainSpace]),
       password: new FormControl('', Validators.required)
     });
   }
