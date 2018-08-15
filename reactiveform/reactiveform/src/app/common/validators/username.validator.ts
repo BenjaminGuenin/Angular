@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
-import { resolve } from "path";
 
 export class UsernameValidators {
 
@@ -11,15 +10,13 @@ export class UsernameValidators {
   }
 
   static shouldBeUnique(control: AbstractControl) : Promise<ValidationErrors | null> {
-    // simulate call to a service
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log('ok');
         if (control.value === 'mosh')
-          resolve ({ shouldBeUnique: true });
+          resolve({ shouldBeUnique: true });
         else
           resolve(null);
-      }, 2000);
-    });
+      }, 2000)
+    })
   }
 }
