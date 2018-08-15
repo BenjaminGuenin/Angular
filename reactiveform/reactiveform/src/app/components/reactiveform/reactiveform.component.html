@@ -1,12 +1,9 @@
-
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <form [formGroup]="myForm" (ngSubmit)="login()">
-        <div *ngIf="form.errors" class="alert alert-danger">
-          The username or the password is invalid.
-        </div>
-        <div class="form-group">
+        <div fromGroupName="account">
+          <div class="form-group">
             <label for="username">Username</label>
             <input formControlName="username" id="username" type="text" class="form-control">
             <div *ngIf="username.pending">Checking for uniqueness...</div>
@@ -17,19 +14,17 @@
               <div *ngIf="username.errors.cannotContainSpace">Username cannot contain space</div>
               <div *ngIf="username.errors.shouldBeUnique">Username is already taken</div>
             </div>
-        </div>
-        <div class="form-group">
+          </div>
+          <div class="form-group">
             <label for="password">Password</label>
-            <input
-                formControlName="password"
-                id="password"
-                type="text"
-                class="form-control">
-                <br>
-                <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
-                  The password is required.
-                </div>
+            <input formControlName="password" id="password" type="text" class="form-control">
+            <br>
+            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+              The password is required.
+            </div>
+          </div>
         </div>
+
         <button class="btn btn-primary" type="submit">Sign Up</button>
       </form>
     </div>

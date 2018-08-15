@@ -1,6 +1,6 @@
 import { UsernameValidators } from './../../common/validators/username.validator';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, Validators, FormControl, ValidationErrors, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-reactiveform',
   templateUrl: './reactiveform.component.html',
@@ -10,21 +10,22 @@ export class ReactiveformComponent implements OnInit {
 
   myForm: any;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
     this.createForm();
   }
 
   // getters
-  get username() { return this.myForm.get('username'); }
-  get password() { return this.myForm.get('password'); }
+  get username() { return this.myForm.get('account.username'); }
+  get password() { return this.myForm.get('account.password'); }
 
   createForm() {
     this.myForm = new FormGroup({
-      username: new FormControl('',
-          [Validators.required,
-          Validators.minLength(3),
-          UsernameValidators.cannotContainSpace], UsernameValidators.shouldBeUnique),
-      password: new FormControl('', Validators.required)
+      account: new FormGroup({
+        username: new FormControl('',
+        [Validators.required, Validators.minLength(3), UsernameValidators.cannotContainSpace],
+        UsernameValidators.shouldBeUnique),
+        password: new FormControl('', Validators.required)
+      })
     });
   }
 
