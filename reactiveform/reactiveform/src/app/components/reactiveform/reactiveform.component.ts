@@ -15,18 +15,21 @@ export class ReactiveformComponent implements OnInit {
   }
 
   // getters
-  get username() { return this.myForm.get('account.username'); }
-  get password() { return this.myForm.get('account.password'); }
+  get username() { return this.myForm.get('username'); }
+  get password() { return this.myForm.get('password'); }
 
   createForm() {
-    this.myForm = new FormGroup({
-      account: new FormGroup({
-        username: new FormControl('',
-        [Validators.required, Validators.minLength(3), UsernameValidators.cannotContainSpace],
-        UsernameValidators.shouldBeUnique),
-        password: new FormControl('', Validators.required)
-      })
-    });
+    this.myForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3), UsernameValidators.cannotContainSpace], UsernameValidators.shouldBeUnique],
+      password: ['', [Validators.required, Validators.minLength(3)]]
+    })
+    // Without FormBuilder
+    // this.myForm = new FormGroup({
+    //   username: new FormControl('',
+    //   [Validators.required, Validators.minLength(3), UsernameValidators.cannotContainSpace],
+    //   UsernameValidators.shouldBeUnique),
+    //   password: new FormControl('', Validators.required)
+    // });
   }
 
   login() {
