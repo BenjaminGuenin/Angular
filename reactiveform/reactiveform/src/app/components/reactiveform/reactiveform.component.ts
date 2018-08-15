@@ -1,7 +1,6 @@
 import { UsernameValidators } from './../../common/validators/username.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
-
 @Component({
   selector: 'app-reactiveform',
   templateUrl: './reactiveform.component.html',
@@ -27,6 +26,12 @@ export class ReactiveformComponent implements OnInit {
           UsernameValidators.cannotContainSpace], UsernameValidators.shouldBeUnique),
       password: new FormControl('', Validators.required)
     });
+  }
+
+  login() {
+    this.myForm.setErrors({
+      invalidLogin: true
+    })
   }
 
   ngOnInit() {
